@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createContext } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, } from "firebase/auth";
 import app from "../Firebase/Firebase.vonf";
 
 const auth = getAuth(app);
@@ -11,9 +11,22 @@ const AuthProvider = ({children}) => {
     const [lodding,setLodding] = useState(true);
 
     const usercreateWithEmailAndPassword = (email, password) => {
+        setLodding(false)
         return createUserWithEmailAndPassword(auth, email, password)
     }
-    
+
+    const signIN = (email, password) => {
+        setLodding(false)
+        return signInWithEmailAndPassword(app, email, password)
+    }
+
+
+    const logOut = ( ) => {
+        setLodding(true)
+        return signOut(auth)
+
+    }
+
     useEffect(()=>{
      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
           if (currentUser) {
@@ -27,11 +40,14 @@ const AuthProvider = ({children}) => {
             return unsubscribe
           }
     },[])
-    
+
     const authINF = {
       user,
+      setLodding,
       lodding,
       usercreateWithEmailAndPassword,
+      signIN,
+      logOut,
     };
 
     return (

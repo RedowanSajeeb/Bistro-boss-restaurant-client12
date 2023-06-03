@@ -6,7 +6,8 @@ import NavBar from "../Pages/Shared/NavBar/NavBar";
 
 const Main = () => {
   const location = useLocation();
-  const nologinAndnoFooter = location.pathname.includes("login");
+  const nologinAndnoFooter =
+    location.pathname.includes("login") || location.pathname.includes("signup");
 
   return (
     <div className="max-w-screen-2xl mx-auto">
@@ -14,7 +15,7 @@ const Main = () => {
       {nologinAndnoFooter || <NavBar></NavBar>}
       <Outlet></Outlet>
       {nologinAndnoFooter || <Footer></Footer>}
-      
+
     </div>
   );
 };

@@ -6,9 +6,10 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const {usercreateWithEmailAndPassword} = useContext(AuthContext)
+  const { signIN, setLodding } = useContext(AuthContext);
   const useCaptchaRef = useRef(null);
 
   const [disabled, setDisabled] = useState(true);
@@ -24,17 +25,18 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
      
-    usercreateWithEmailAndPassword(email, password)
+    signIN(email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         // ...
         console.log(user);
+        setLodding(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-       console.log(errorCode,errorMessage);
+        console.log(errorCode, errorMessage);
       });
 
 
@@ -110,10 +112,16 @@ const Login = () => {
               </button>
             </div>
             <div className="form-control mt-6 bg-[rgba(209, 160, 84, 0.7)]">
-              <button disabled={disabled} className="btn btn-warning  text-white">
-                Login
+              <button
+                disabled={disabled}
+                className="btn btn-warning  text-white"
+              >
+                Sign In
               </button>
             </div>
+            <p className="text-[#D1A054] text-lg text-center">
+              New here? <Link className="font-bold" to={'/signup'}>Create a New Account</Link>
+            </p>
           </div>
         </form>
       </div>
