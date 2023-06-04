@@ -1,6 +1,19 @@
+import { useForm } from "react-hook-form";
 
 
 const Signup = () => {
+    const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+    } = useForm();
+     const onSubmit = (data) => {
+        console.log(data)
+    };
+
+      console.log(watch("example")); 
+
     return (
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
@@ -13,26 +26,61 @@ const Signup = () => {
             </p>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  {...register("name", { required: true })}
+                  type="text"
+                  placeholder="Your name"
+                  className="input input-bordered"
+                />
+                {errors.name && (
+                  <span className="mt-1 text-red-600">
+                    Name field is required*
+                  </span>
+                )}
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                  {...register("email", { required: true })}
+                  type="email"
                   placeholder="email"
                   className="input input-bordered"
                 />
+                {errors.email && (
+                  <span className="mt-1 text-red-600">
+                    Email field is required*
+                  </span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 20,
+                  })}
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
                 />
+                {errors.password?.type === "required" && (
+                  <p className="mt-1 text-red-600">
+                    password field is required*{" "}
+                  </p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="mt-1 text-red-600">password 6 minLength</p>
+                )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -42,7 +90,7 @@ const Signup = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
