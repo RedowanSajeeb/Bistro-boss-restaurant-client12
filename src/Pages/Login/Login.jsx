@@ -1,5 +1,5 @@
 // import React from 'react';
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect,  useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -8,10 +8,10 @@ import {
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import Helmett from "../../Components/Helmet/Helmett";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { signIN, setLodding } = useContext(AuthContext);
-  const useCaptchaRef = useRef(null);
 
   const [disabled, setDisabled] = useState(true);
 
@@ -30,6 +30,13 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log(user);
+          Swal.fire({
+            icon: "success",
+            title: "Login successfully",
+            showConfirmButton: false,
+            timer: 1000,
+          });
         // ...
         console.log(user);
         setLodding(false);
@@ -44,13 +51,13 @@ const Login = () => {
 
   };
 
-  const captchaHAndelerChange = () => {
-    const value = useCaptchaRef.current.value;
+  const captchaHAndelerChange = (e) => {
+    const value = e.target.value;
     console.log(value);
     if (validateCaptcha(value)) {
       // alert("Captcha Matched");
       setDisabled(false);
-      useCaptchaRef.current.value = " ";
+      e.target.value = " ";
     } else {
       setDisabled(true);
     }
@@ -100,18 +107,13 @@ const Login = () => {
                 <LoadCanvasTemplate />
               </label>
               <input
-                ref={useCaptchaRef}
+                onBlur={captchaHAndelerChange}
                 type="text"
                 name="captcha"
                 placeholder="Type captcha above"
                 className="input input-bordered"
               />
-              <button
-                onClick={captchaHAndelerChange}
-                className="btn btn-xs btn-outline mt-3"
-              >
-                Captcha Match
-              </button>
+              <p className=" mt-3">Captcha Match click this text🎯</p>
             </div>
             <div className="form-control mt-6 bg-[rgba(209, 160, 84, 0.7)]">
               <button
