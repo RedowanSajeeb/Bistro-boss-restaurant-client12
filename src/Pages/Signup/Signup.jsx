@@ -1,21 +1,42 @@
 import { useForm } from "react-hook-form";
-
+import { Link } from "react-router-dom";
+import Helmett from "../../Components/Helmet/Helmett";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Signup = () => {
+  
     const {
       register,
       handleSubmit,
-      watch,
+      // reset ,
       formState: { errors },
     } = useForm();
-     const onSubmit = (data) => {
-        console.log(data)
-    };
+    const { usercreateWithEmailAndPassword } = useContext(AuthContext);
 
-      console.log(watch("example")); 
+     const onSubmit = (data) => {
+        console.log(data.email, data.password);
+        usercreateWithEmailAndPassword(data.email, data.password)
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // ...
+            console.log(user);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+            // ..
+          });
+
+        // reset
+    };
+    //  console.log(watch("example")); 
 
     return (
       <div className="hero min-h-screen bg-base-200">
+        <Helmett title={"Sign Up "}></Helmett>;
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
@@ -68,6 +89,7 @@ const Signup = () => {
                     required: true,
                     minLength: 6,
                     maxLength: 20,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].)(?=.*[a-z])/,
                   })}
                   type="password"
                   placeholder="password"
@@ -79,7 +101,13 @@ const Signup = () => {
                   </p>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <p className="mt-1 text-red-600">password 6 minLength</p>
+                  <p className="mt-1 text-red-600">password must be 6 Length</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="mt-1 text-red-600">
+                    password must should be one special case letter , one
+                    uppercase letter And one lowercase ,at least one digit,
+                  </p>
                 )}
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
@@ -88,8 +116,18 @@ const Signup = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <input
+                  className="btn btn-primary"
+                  type="submit"
+                  value="Sign Up"
+                />
               </div>
+              <p className="text-[#D1A054] text-lg text-center">
+                Already registered?
+                <Link className="font-bold" to={"/login"}>
+                  Go to log in
+                </Link>
+              </p>
             </form>
           </div>
         </div>

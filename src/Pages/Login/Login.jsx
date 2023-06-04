@@ -7,6 +7,7 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import Helmett from "../../Components/Helmet/Helmett";
 
 const Login = () => {
   const { signIN, setLodding } = useContext(AuthContext);
@@ -57,6 +58,7 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen bg-base-200">
+      <Helmett title={"LogIn "}></Helmett>;
       <div className="hero-content   flex-col ">
         <div className="text-center w-96 max-w-sm  lg:text-left">
           <h1 className="text-5xl text-center mb-7 font-bold">Login</h1>
@@ -120,7 +122,10 @@ const Login = () => {
               </button>
             </div>
             <p className="text-[#D1A054] text-lg text-center">
-              New here? <Link className="font-bold" to={'/signup'}>Create a New Account</Link>
+              New here?{" "}
+              <Link className="font-bold" to={"/signup"}>
+                Create a New Account
+              </Link>
             </p>
           </div>
         </form>
