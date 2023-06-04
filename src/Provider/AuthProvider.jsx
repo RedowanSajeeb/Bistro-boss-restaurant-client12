@@ -8,15 +8,15 @@ const auth = getAuth(app);
 export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
-    const [lodding,setLodding] = useState(true);
+    const [lodding,setLodding] = useState(false);
 
     const usercreateWithEmailAndPassword = (email, password) => {
-        setLodding(false)
+        setLodding(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const signIN = (email, password) => {
-        setLodding(false)
+      setLodding(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -43,7 +43,6 @@ const AuthProvider = ({children}) => {
 
     const authINF = {
       user,
-      setLodding,
       lodding,
       usercreateWithEmailAndPassword,
       signIN,
