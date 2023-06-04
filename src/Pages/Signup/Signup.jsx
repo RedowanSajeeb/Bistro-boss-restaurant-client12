@@ -71,6 +71,8 @@ const Signup = () => {
                     required: true,
                     minLength: 6,
                     maxLength: 20,
+                    pattern:
+                      /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
                   type="text"
                   placeholder="password"
@@ -82,7 +84,13 @@ const Signup = () => {
                   </span>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <p>Must 6 Length password </p>
+                  <p>password Must be 6 Length</p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p>
+                    password Must have one uppercase,one lowercase,one number
+                    and one special case lette
+                  </p>
                 )}
 
                 <label className="label">
