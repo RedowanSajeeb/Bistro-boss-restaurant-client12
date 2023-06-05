@@ -9,6 +9,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Helmett from "../../Components/Helmet/Helmett";
 import Swal from "sweetalert2";
+import LoginExtaForm from "../Shared/LoginExtaForm/LoginExtaForm";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -135,9 +136,11 @@ const Login = () => {
             </p>
           </div>
         </form>
+        <p>Or sign up with</p>
+        <LoginExtaForm></LoginExtaForm>
       </div>
     </div>
   );
-};
+}
 
 export default Login;
