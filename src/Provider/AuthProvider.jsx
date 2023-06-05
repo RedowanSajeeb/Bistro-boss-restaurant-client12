@@ -34,10 +34,11 @@ const AuthProvider = ({children}) => {
             setLoading(false)
           } else {
             // User is signed out
+            setLoading(false)
           }
         });
           return () => {
-            return unsubscribe
+            return unsubscribe()
           }
     },[])
 
