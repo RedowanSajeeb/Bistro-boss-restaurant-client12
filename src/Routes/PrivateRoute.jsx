@@ -5,10 +5,10 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({children}) => {
     const location = useLocation();
-    const { user,  } = useContext(AuthContext);
-    // if (lodding){
-    //     return <span className="loading loading-bars mx-auto w-full"></span>;
-    // }
+    const { user, loading } = useContext(AuthContext);
+    if (loading){
+        return <span className="loading loading-bars mx-auto w-full"></span>;
+    }
       if (user) {
         return children;
       }
