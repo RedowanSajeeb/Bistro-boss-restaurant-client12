@@ -8,21 +8,21 @@ const auth = getAuth(app);
 export const AuthContext = createContext(null)
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
-    const [lodding,setLodding] = useState(false);
+    const [lodding, setLoading] = useState(false);
 
     const usercreateWithEmailAndPassword = (email, password) => {
-        setLodding(true)
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const signIN = (email, password) => {
-      setLodding(true)
+      setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
 
     const logOut = ( ) => {
-        setLodding(true)
+        setLoading(true)
         return signOut(auth)
 
     }
@@ -31,7 +31,7 @@ const AuthProvider = ({children}) => {
      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
           if (currentUser) {
             setUser(currentUser);
-            setLodding(false)
+            setLoading(false)
           } else {
             // User is signed out
           }
