@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
-
+import { FaCartArrowDown } from "react-icons/fa";
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const handelLogOut = () => {
@@ -33,6 +33,14 @@ const NavBar = () => {
       </li>
       <li>
         <Link to={"/order/salad"}>Order Food</Link>
+      </li>
+      <li>
+        <Link to={"/order/salad"}>
+          <button className="bg-yellow-600 flex justify-center items-center p-1 rounded-3xl">
+            <FaCartArrowDown className="text-xl"></FaCartArrowDown>
+            <div className="badge ms-3">+99</div>
+          </button>
+        </Link>
       </li>
       <li>
         <Link to={"/security"}>security Food</Link>
