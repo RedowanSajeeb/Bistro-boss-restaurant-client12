@@ -17,7 +17,7 @@ const Signup = () => {
 
    const onSubmit = (data) => {
 
-    console.log(data)
+    console.log(data.email)
     usercreateWithEmailAndPassword(data.email, data.password)
       .then((userCredential) => {
         // Signed in
@@ -90,7 +90,7 @@ const Signup = () => {
                     maxLength: 20,
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
                 />
@@ -103,7 +103,7 @@ const Signup = () => {
                   <p>password Must be 6 Length</p>
                 )}
                 {errors.password?.type === "pattern" && (
-                  <p>
+                  <p className="text-red-600  mt-1">
                     password Must have one uppercase,one lowercase,one number
                     and one special case lette
                   </p>

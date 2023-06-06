@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createContext } from "react";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, } from "firebase/auth";
 import app from "../Firebase/Firebase.vonf";
 
 const auth = getAuth(app);
@@ -38,6 +38,15 @@ const AuthProvider = ({children}) => {
    return signInWithPopup(auth, providerGithub);
  };
 
+//  Update a user's profile
+
+const updateProfile1 = (name,photo) =>{
+ return updateProfile(auth.currentUser, {
+    displayName: name,
+    photoURL: photo,
+  })
+
+}
 
     useEffect(()=>{
      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -58,6 +67,7 @@ const AuthProvider = ({children}) => {
       user,
       loading,
       usercreateWithEmailAndPassword,
+      updateProfile1,
       signIN,
       logOut,
       google,
