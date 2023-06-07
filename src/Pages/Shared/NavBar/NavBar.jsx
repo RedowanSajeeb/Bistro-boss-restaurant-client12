@@ -5,7 +5,10 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { FaCartArrowDown } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 const NavBar = () => {
+  const [cart] = useCart()
+
   const { user, logOut } = useContext(AuthContext);
   const handelLogOut = () => {
     logOut()
@@ -38,7 +41,7 @@ const NavBar = () => {
         <Link to={"/order/salad"}>
           <button className="bg-yellow-600 flex justify-center items-center p-1 rounded-3xl">
             <FaCartArrowDown className="text-xl"></FaCartArrowDown>
-            <div className="badge ms-3">+99</div>
+            <div className="badge ms-3">+{cart?.length || 0 }</div>
           </button>
         </Link>
       </li>
