@@ -38,10 +38,10 @@ const NavBar = () => {
         <Link to={"/order/salad"}>Order Food</Link>
       </li>
       <li>
-        <Link to={"/order/salad"}>
+        <Link to={"/deshbord/mycart"}>
           <button className="bg-yellow-600 flex justify-center items-center p-1 rounded-3xl">
             <FaCartArrowDown className="text-xl"></FaCartArrowDown>
-            <div className="badge ms-3">+{cart?.length || 0 }</div>
+            <div className="badge ms-3">+{cart?.length || 0}</div>
           </button>
         </Link>
       </li>
