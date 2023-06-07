@@ -2,6 +2,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import Helmett from "../../../Components/Helmet/Helmett";
 import useCart from "../../../Hooks/useCart";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../Components/SectionTitale/SectionTitle";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -36,6 +37,10 @@ const MyCart = () => {
   return (
     <div className="w-full">
       <Helmett title={"Bistro || My Cart "}></Helmett>
+      <SectionTitle
+        shortHading={"My Cart"}
+        hading={"WANNA ADD MORE?"}
+      ></SectionTitle>
       <div className="flex justify-evenly items-center h-24 font-semibold">
         <h1 className="text-3xl uppercase">Total Itms: {cart.length}</h1>
         <h1 className="text-3xl uppercase">Total Price: $ {totalprice}</h1>
