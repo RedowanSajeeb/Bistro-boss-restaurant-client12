@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import Swal from "sweetalert2";
+
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
 const NavBar = () => {
@@ -13,12 +13,6 @@ const NavBar = () => {
   const handelLogOut = () => {
     logOut()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "logout successfully",
-          showConfirmButton: false,
-          timer: 1000,
-        });
       })
       .catch((error) => {
         // An error happened.
@@ -49,19 +43,19 @@ const NavBar = () => {
         <Link to={"/security"}>security Food</Link>
       </li>
       {user ? (
-        <>
+        <div>
           <li>
-            <li onClick={handelLogOut} className="btn  btn-ghost">
+            <button onClick={handelLogOut} className="btn  btn-ghost">
               Log Out
-            </li>
+            </button>
           </li>
-        </>
+        </div>
       ) : (
-        <>
+        <div>
           <li>
             <Link to={"/login"}>Login</Link>
           </li>
-        </>
+        </div>
       )}
     </>
   );

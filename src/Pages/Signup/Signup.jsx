@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import LoginExtaForm from "../Shared/LoginExtaForm/LoginExtaForm";
 
 // import React from 'react';
 
@@ -79,7 +80,6 @@ const Signup = () => {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl w-96 font-bold">Sign Up now!</h1>
-            
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -180,6 +180,7 @@ const Signup = () => {
                   Go to log in
                 </Link>
               </p>
+              <LoginExtaForm></LoginExtaForm>
             </form>
           </div>
         </div>
