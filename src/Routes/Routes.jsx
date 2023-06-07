@@ -47,12 +47,16 @@ export const router = createBrowserRouter([
   },
   {
     path: "/deshbord",
-    element: <Deshbord></Deshbord>,
+    element: (
+      <PrivateRoute>
+        <Deshbord></Deshbord>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "mycart",
-        element: <MyCart></MyCart>
-      }
-    ]
+        element: <MyCart></MyCart>,
+      },
+    ],
   },
 ]);

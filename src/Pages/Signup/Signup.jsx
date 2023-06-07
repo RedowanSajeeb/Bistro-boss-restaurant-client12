@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const Signup = () => {
   const { usercreateWithEmailAndPassword, updateProfile1 } =
     useContext(AuthContext);
+
    const navigate = useNavigate();
    const location = useLocation();
    const from = location.state?.from?.pathname || "/";
@@ -23,22 +24,39 @@ const Signup = () => {
 
    const onSubmit = (data) => {
 
-    console.log(data.email)
+    // console.log(data.email)
+
     usercreateWithEmailAndPassword(data.email, data.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+
     updateProfile1(data.name, data.url)
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "Sign Up successfully",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-        reset();
-        navigate(from, { replace: true });
+
+        const saverUser= {name : data.name, email: data.email}
+        fetch("http://localhost:3000/users",{
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(saverUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(data.insertedId){
+              Swal.fire({
+                icon: "success",
+                title: "Sign Up successfully",
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              reset();
+              navigate(from, { replace: true });
+          }
+        })
+
+
+        
       })
       .catch((error) => {
         // An error occurred

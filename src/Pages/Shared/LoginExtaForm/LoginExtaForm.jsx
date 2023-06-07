@@ -16,21 +16,28 @@ const LoginExtaForm = () => {
           .then((result) => {
            
             const user = result.user;
-          
             console.log(user);
-             Swal.fire({
-               icon: "success",
-               title: "Login successfully",
-               showConfirmButton: false,
-               timer: 1000,
-             });
-            navigate(from, { replace: true });
-          })
-          .catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorMessage,errorCode);
+            
+                 Swal.fire({
+                   icon: "success",
+                   title: "athorized successfull user",
+                   showConfirmButton: false,
+                   timer: 1000,
+                 });
+                 navigate(from, { replace: true });
+              
+              const saverUser = { name: user.displayName, email: user.email };
+              
+              fetch("http://localhost:3000/users", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(saverUser),
+              })
+                .then((res) => res.json())
+                .then(() => { 
+                     
+                            
+                });
           });
    
     }
