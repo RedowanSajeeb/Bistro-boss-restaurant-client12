@@ -2,8 +2,12 @@ import { NavLink, Outlet } from "react-router-dom";
 import { AiOutlineShoppingCart, AiFillCalendar ,AiFillHome, AiOutlineMenuFold } from "react-icons/ai";
 import { GiWallet } from "react-icons/gi";
 import { FaFirstOrder } from "react-icons/fa";
+import useCart from "../Hooks/useCart";
 
 const Deshbord = () => {
+    const [cart] = useCart
+
+    ()
     return (
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -39,6 +43,7 @@ const Deshbord = () => {
             <li>
               <NavLink to={"/deshbord/mycart"}>
                 <AiOutlineShoppingCart></AiOutlineShoppingCart>My Cart
+                <div className="badge ms-3">+{cart?.length || 0}</div>
               </NavLink>
             </li>
             <div className="divider"></div>
@@ -54,7 +59,10 @@ const Deshbord = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/order/salad"}> <FaFirstOrder></FaFirstOrder> Order Food</NavLink>
+              <NavLink to={"/order/salad"}>
+                {" "}
+                <FaFirstOrder></FaFirstOrder> Order Food
+              </NavLink>
             </li>
           </ul>
         </div>

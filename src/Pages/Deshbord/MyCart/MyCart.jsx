@@ -22,13 +22,13 @@ const MyCart = () => {
           method: "delete",
         })
           .then((res) => res.json())
-          .then((data) => {
-            if (data.daletedCount > 0) {
-                console.log(data);
-                refetch()
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            }
-          });
+          .then(data => {
+             if (data.daletedCount > 0) {
+               console.log(data);
+               refetch();
+               Swal.fire("Deleted!", "Your file has been deleted.", "success");
+             }
+          })
       }
     });
   };
