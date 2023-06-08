@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        setLoading(false);
+      
         // get token from JWT and update
 
         // fetch('',{
@@ -81,6 +81,7 @@ const AuthProvider = ({ children }) => {
 
         setLoading(false);
       }
+        setLoading(false);
     });
     return () => {
       return unsubscribe();
