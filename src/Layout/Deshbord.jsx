@@ -41,8 +41,8 @@ const Deshbord = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/deshbord/reservations"}>
-                    <FaUtensils></FaUtensils> add items
+                  <NavLink to={"/deshbord/addItem"}>
+                    <FaUtensils></FaUtensils> add an items
                   </NavLink>
                 </li>
                 <li>
