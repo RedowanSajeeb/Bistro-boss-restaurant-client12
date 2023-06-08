@@ -72,12 +72,12 @@ const AuthProvider = ({ children }) => {
             .then((data) => {
               console.log(data.data.token);
 
-              localStorage.setItem("access_token", data.data.token);
+              localStorage.setItem("access-Token", data.data.token);
             });
         }
       } else {
         // User is signed out
-        localStorage.removeItem("access_token");
+        localStorage.removeItem("access-Token");
 
         setLoading(false);
       }
