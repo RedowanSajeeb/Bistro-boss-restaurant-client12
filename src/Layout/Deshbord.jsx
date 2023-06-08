@@ -3,12 +3,17 @@ import { AiOutlineShoppingCart, AiFillCalendar ,AiFillHome, AiOutlineMenuFold } 
 import { GiWallet } from "react-icons/gi";
 import {  FaBook, FaFirstOrder,  FaUsers, FaUtensils } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Deshbord = () => {
     const [cart] = useCart()
 
      //TODO: load data from the server to have daynamic is on data
-    const isAdmin = true;
+
+    // const isAdmin = true;
+
+    const [isAdmin] = useAdmin()
+
 
     return (
       <div className="drawer lg:drawer-open">

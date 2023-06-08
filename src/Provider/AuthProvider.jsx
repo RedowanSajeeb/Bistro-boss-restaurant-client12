@@ -73,6 +73,7 @@ const AuthProvider = ({ children }) => {
               console.log(data.data.token);
 
               localStorage.setItem("access-Token", data.data.token);
+              setLoading(false);
             });
         }
       } else {
@@ -81,7 +82,7 @@ const AuthProvider = ({ children }) => {
 
         setLoading(false);
       }
-        setLoading(false);
+        
     });
     return () => {
       return unsubscribe();
