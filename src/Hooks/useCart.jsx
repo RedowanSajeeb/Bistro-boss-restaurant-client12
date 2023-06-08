@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 
 
 const useCart = () => {
-    const { user, loading } = useContext(AuthContext);
+    const { user, loading } = useAuth();
+
         // const token = localStorage.getItem("access-Token");
 
         const [axiosSecure] = useAxiosSecure();
@@ -28,9 +28,9 @@ const useCart = () => {
        queryFn: async () => {
          const response = await axiosSecure(`/carts?email=${user?.email}`);
 
-         if (!response.ok) {
-           throw new Error("Network response was not ok");
-         }
+        //  if (!response.ok) {
+        //    throw new Error("Network response was not ok");
+        //  }
 
         // console.log(response.data);
          return response.data

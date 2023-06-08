@@ -1,11 +1,13 @@
 import { FaTrashAlt } from "react-icons/fa";
 import Helmett from "../../../Components/Helmet/Helmett";
-import useCart from "../../../Hooks/useCart";
+
 import Swal from "sweetalert2";
 import SectionTitle from "../../../Components/SectionTitale/SectionTitle";
+import useCart from "../../../Hooks/useCart";
 
 const MyCart = () => {
-  const [cart, refetch] = useCart();
+  const [cart, refetch] = useCart() ;
+  console.log(cart);
   const totalprice = cart.reduce((sum, items) => items.price + sum, 0);
 
   const deleteHandelItms = (itms) => {
