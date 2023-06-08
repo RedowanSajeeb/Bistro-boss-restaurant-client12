@@ -46,7 +46,7 @@ const Deshbord = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to={"/deshbord/payment"}>
+                  <NavLink to={"/deshbord/manageitems"}>
                     <GiWallet></GiWallet> manage items
                   </NavLink>
                 </li>
