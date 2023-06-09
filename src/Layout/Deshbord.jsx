@@ -36,7 +36,7 @@ const Deshbord = () => {
             {isAdmin ? (
               <>
                 <li>
-                  <NavLink to={"/deshbord/d"}>
+                  <NavLink to={"/deshbord/adminHome"}>
                     <AiFillHome></AiFillHome> Admin Home
                   </NavLink>
                 </li>
@@ -64,7 +64,7 @@ const Deshbord = () => {
             ) : (
               <>
                 <li>
-                  <NavLink to={"/deshbord/d"}>
+                  <NavLink to={"/deshbord/usehome"}>
                     <AiFillHome></AiFillHome> User Home
                   </NavLink>
                 </li>

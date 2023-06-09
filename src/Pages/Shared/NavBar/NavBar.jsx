@@ -6,9 +6,10 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
+import useAdmin from "../../../Hooks/useAdmin";
 const NavBar = () => {
   const [cart] = useCart()
-
+  const [isAdmin] = useAdmin()
   const { user, logOut } = useContext(AuthContext);
   const handelLogOut = () => {
     logOut()
@@ -40,7 +41,9 @@ const NavBar = () => {
         </Link>
       </li>
       <li>
-        <Link to={"/security"}>security Food</Link>
+        <Link to={isAdmin ? "/deshbord/adminHome" : "/deshbord/usehome"}>
+          deshbord
+        </Link>
       </li>
       {user ? (
         <div>
