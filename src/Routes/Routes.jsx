@@ -13,6 +13,7 @@ import AllUsers from "../Pages/Deshbord/AllUsers/AllUsers";
 import AddItms from "../Pages/Deshbord/AddItms/AddItms";
 import AdminRout from "./AdminRout";
 import ManageItems from "../Pages/Deshbord/ManageItems/ManageItems";
+import Payment from "../Pages/Deshbord/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -63,16 +64,34 @@ export const router = createBrowserRouter([
       },
       {
         path: "allusers",
-        element: <AllUsers></AllUsers>
+        element: (
+          <AdminRout>
+            <AllUsers></AllUsers>
+          </AdminRout>
+        ),
       },
       {
         path: "addItem",
-        element: <AdminRout> <AddItms></AddItms></AdminRout>
+        element: (
+          <AdminRout>
+          
+            <AddItms></AddItms>
+          </AdminRout>
+        ),
       },
       {
         path: "manageitems",
-        element: <AdminRout> <ManageItems></ManageItems></AdminRout>
-      }
+        element: (
+          <AdminRout>
+          
+            <ManageItems></ManageItems>
+          </AdminRout>
+        ),
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>
+      },
     ],
   },
 ]);

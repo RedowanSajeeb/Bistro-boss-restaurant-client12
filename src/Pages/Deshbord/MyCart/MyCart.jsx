@@ -4,6 +4,7 @@ import Helmett from "../../../Components/Helmet/Helmett";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../Components/SectionTitale/SectionTitle";
 import useCart from "../../../Hooks/useCart";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart() ;
@@ -26,9 +27,9 @@ const MyCart = () => {
         })
           .then((res) => res.json())
           .then(data => {
+            refetch();
              if (data.daletedCount > 0) {
-               console.log(data);
-               refetch();
+               console.log(data);             
                Swal.fire("Deleted!", "Your file has been deleted.", "success");
              }
           })
@@ -46,7 +47,11 @@ const MyCart = () => {
       <div className="flex justify-evenly items-center h-24 font-semibold">
         <h1 className="text-3xl uppercase">Total Itms: {cart.length}</h1>
         <h1 className="text-3xl uppercase">Total Price: $ {totalprice}</h1>
-        <button className="btn btn-warning btn-sm">Pay</button>
+
+        <Link to={"/deshbord/payment"}>
+         
+          <button className="btn btn-warning btn-sm">Pay</button>
+        </Link>
       </div>
       <div>
         <div className="overflow-x-auto">
